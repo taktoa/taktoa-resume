@@ -6,6 +6,17 @@
 %   font family (sans and roman)
 \documentclass[10pt,letterpaper,sans]{moderncv}
 
+% Fix fonts in XeTeX
+\usepackage{fontspec}
+\defaultfontfeatures{
+    Path = /home/remy/Documents/NotWork/Projects/LaTeX/taktoa-resume/fonts/}
+
+\newfontfamily{\githubfont}{Octicons}
+\newcommand{\ghOctocat}{{\githubfont\char"F209}}
+\newcommand{\ghCommit}{{\githubfont\char"F01F}}
+\newcommand{\ghAdd}{{\githubfont\char"F06B}}
+\newcommand{\ghRem}{{\githubfont\char"F06C}}
+
 % style options are casual (default), classic, banking, oldstyle and fancy
 % color options black, blue (default), burgundy, green, grey, orange, and red
 \moderncvstyle{casual}
@@ -24,7 +35,7 @@
 \usepackage[utf8]{inputenc}
 
 % adjust the page margins
-\usepackage[scale=0.76]{geometry}
+\usepackage[scale=0.75]{geometry}
 
 \usepackage{booktabs}
 
@@ -42,46 +53,27 @@
 
 \newcommand{\wlink}[2]{\textcolor[HTML]{0071E6}{\href{#1}{#2}}}
 
-\newcommand{\nixpkg}[2]{
+\newcommand{\nixpkg}[2]{%
   \wlink{https://github.com/NixOS/nixpkgs/tree/master/pkgs/#1/#2/default.nix}%
         {#2}%
 }
 
 \newcommand{\ghlink}[2]{\wlink{https://github.com/#1}{#2}}
-\newcommand{\ghrepo}[1]{\ghlink{#1}{repo}}
+\newcommand{\ghrepo}[1]{\ghlink{#1}{\ghOctocat}}
 \newcommand{\ghlang}[1]{\texttt{#1}}
-\newcommand{\ghcom}[1]{\textcolor[HTML]{666666}{#1}}
-\newcommand{\ghadd}[1]{\textcolor[HTML]{6CC644}{+ #1}}
-\newcommand{\ghrem}[1]{\textcolor[HTML]{BD2C00}{- #1}}
+\newcommand{\ghcom}[1]{\textcolor[HTML]{666666}{\ghCommit{} #1}}
+%\faicon{minus-sign}
+%\faicon{plus-sign}
+\newcommand{\ghadd}[1]{\textcolor[HTML]{6CC644}{\faicon{plus-sign} #1}}
+\newcommand{\ghrem}[1]{\textcolor[HTML]{BD2C00}{\faicon{minus-sign} #1}}
+%\newcommand{\ghadd}[1]{\textcolor[HTML]{6CC644}{+ #1}}
+%\newcommand{\ghrem}[1]{\textcolor[HTML]{BD2C00}{- #1}}
 \newcommand{\ghstar}[1]{#1}
 \newcommand{\ghfork}[1]{#1}
-\newcommand{\ghtr}[0]{Repo}
-\newcommand{\ghtf}[0]{Fork}
+\newcommand{\ghtr}[0]{}
+\newcommand{\ghtf}[0]{\faCodeFork}
 
-\newcommand{\ghub}[4]{GitHub: \ghrepo{#2} / \ghlang{#1} / \ghadd{#3} / \ghrem{#4}}
-%\newcommand{\ghtable}[9]{#1 & #2 & #3 & #4 & #5 & #6 & #7 & #8 & #9 \\}
-%\newcommand{\ghr}[9]{
-%  \ghtable{\ghtr{}}
-%          {\ghlink{#1/#2}{#2}}
-%          {\ghlang{#3}}
-%          {\ghcom{#4}}
-%          {\ghadd{#5}}
-%          {\ghrem{#6}}
-%          {\ghstar{#7}}
-%          {\ghfork{#8}}
-%          {#9}%
-%}
-%\newcommand{\ghf}[9]{
-%  \ghtable{\ghtf{}}
-%          {\ghlink{#1/#2}{#2}}
-%          {\ghlang{#3}}
-%          {\ghcom{#4}}
-%          {\ghadd{#5}}
-%          {\ghrem{#6}}
-%          {\ghstar{#7}}
-%          {\ghfork{#8}}
-%          {#9}%
-%}
+\newcommand{\ghub}[4]{\ghrepo{#2} | \ghlang{#1} | \ghadd{#3} | \ghrem{#4}}
 \newcommand{\ghtable}[6]{#1 & #2 & #3 & #4 & #5 & #6 \\}
 \newcommand{\ghr}[9]{
   \ghtable{\ghtr{}}
@@ -116,7 +108,7 @@
         {Research Intern}
         {UIUC Formal Systems Laboratory}
         {}{}{
-Reference: \href{http://tinyurl.com/grigore-rosu}{Dr. Grigore Rosu}
+Reference: \wlink{http://tinyurl.com/grigore-rosu}{Dr. Grigore Rosu}
 \begin{itemize}
 \item Worked on software for executable semantics using rewrite logic
 \item Wrote Java to generate OCaml interpreters from semantic specifications
@@ -128,7 +120,7 @@ Reference: \href{http://tinyurl.com/grigore-rosu}{Dr. Grigore Rosu}
         {Research Intern}
         {Columbia University Applied Physics / Applied Math Department}
         {}{}{
-Reference: \href{http://tinyurl.com/i-cevdet-noyan}{Dr.\ I.\ C.\ Noyan}
+Reference: \wlink{http://tinyurl.com/i-cevdet-noyan}{Dr.\ I.\ C.\ Noyan}
 \begin{itemize}
 \item Designed and built a sealed standing-wave thermoacoustic refrigerator
 \item Studied the effect of waveform input on efficiency in thermoacoustics
@@ -140,7 +132,7 @@ Reference: \href{http://tinyurl.com/i-cevdet-noyan}{Dr.\ I.\ C.\ Noyan}
 %        {Research Intern}
 %        {Duke University Neutrino Group}
 %        {}{}{
-%Reference: \href{http://tinyurl.com/kate-scholberg}{Dr.\ Kate Scholberg}
+%Reference: \wlink{http://tinyurl.com/kate-scholberg}{Dr.\ Kate Scholberg}
 %\begin{itemize}
 %\item Designed data analysis software using ROOT, Geant4, and MATLAB
 %\item Determined the rate of neutrino/muon coincidence events in Super-Kamiokande
@@ -149,22 +141,24 @@ Reference: \href{http://tinyurl.com/i-cevdet-noyan}{Dr.\ I.\ C.\ Noyan}
 
 \section{Activities}
 \cventry{2014--}
-        {Club: University of Illinois ACM SIGPLAN}
-        {Founder and chair}
-        {}{}{
+        {Club}
+        {University of Illinois ACM SIGPLAN}
+        {Founder and chair}{}{
   Group for discussion of programming language theory and related subjects
 }
 
 \cventry{2011--}
-        {Hobby: Open Source Programming}
-        {}{}{}{
-\setlength{\tabcolsep}{10pt}
+        {Hobby}
+        {Open Source Programming}
+        {}{}{
+\setlength{\tabcolsep}{8pt}
+\vspace{0mm}
 %\begin{tabular}{l l l l l l l l l}
 \begin{tabular}{l l l l l l}
-  \midrule
-  Type & Name & Language & Com. & Added & Removed \\
-  \midrule
+  %{} & Name & Language & Com. & Added & Removed \\
+  %\midrule
   %{} & {} & {} & {} & {} & {} & {} & {} & {} \\
+  \midrule
   \ghf{taktoa}{k}{Java}{185}{19062}{15342}{0}{50}{2015}
   \ghr{taktoa}{ThomasEngine}{Racket}{60}{4142}{2023}{2}{0}{2014}
   \ghr{taktoa}{ThermoCalc}{Haskell}{59}{4850}{2718}{0}{0}{2014}
@@ -217,17 +211,19 @@ Reference: \href{http://tinyurl.com/i-cevdet-noyan}{Dr.\ I.\ C.\ Noyan}
 }
 
 \cventry{2014--}
-        {Hobby: \href{http://nixos.org}{NixOS package maintainer}}
-        {}{}{}{
-Maintainer for%
-\nixpkg{applications/science/programming}{kframework},%
+        {Hobby}
+        {\wlink{http://nixos.org}{NixOS} package maintainer}
+        {}{}{
+Maintainer for %
+\nixpkg{applications/science/programming}{kframework}, %
 \nixpkg{development/tools/guile}{g-wrap}, and %
 \nixpkg{development/tools/guile-modules}{guile-gnome}%
 }
 
 \cventry{2008--2011}
-        {Hobby: Model Rocketry}
-        {}{}{}{
+        {Hobby}
+        {Model Rocketry}
+        {}{}{
   \begin{itemize}
   \item Constructed three high-power model rockets using composite materials
   \item Designed GPS-logging avionics for these rockets
@@ -284,203 +280,3 @@ Maintainer for%
   Group Theory                                  & \hfill & Spring & 2014 \\
 \end{tabular}
 \end{document}
-
-
-
-%-------------------------------------------------------------------------------
-
-
-% \documentclass[margin]{res}
-
-% \textwidth=5.2in
-% \usepackage{newcent}
-% \usepackage[hidelinks]{hyperref}
-% \usepackage{multirow}
-% \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
-
-% \newcommand{\email}[1]{\href{mailto:#1}{#1}}
-% \newcommand{\phone}[1]{\href{tel:#1}{#1}}
-
-% \newcommand{\ghlink}[2]{\textcolor[HTML]{0071E6}{\href{https://github.com/#1}{#2}}}
-% \newcommand{\ghrepo}[1]{\ghlink{#1}{repo}}
-% \newcommand{\ghlang}[1]{\texttt{#1}}
-% \newcommand{\ghcom}[1]{\textcolor[HTML]{666666}{#1}}
-% \newcommand{\ghadd}[1]{\textcolor[HTML]{6CC644}{+ #1}}
-% \newcommand{\ghrem}[1]{\textcolor[HTML]{BD2C00}{- #1}}
-% \newcommand{\ghstar}[1]{#1}
-% \newcommand{\ghfork}[1]{#1}
-% \newcommand{\ghtr}[0]{Repo}
-% \newcommand{\ghtf}[0]{Fork}
-
-% \newcommand{\ghub}[4]{GitHub: \ghrepo{#2} / \ghlang{#1} / \ghadd{#3} / \ghrem{#4}}
-% \newcommand{\ghtable}[9]{#1 & #2 & #3 & #4 & #5 & #6 & #7 & #8 & #9 \\}
-% \newcommand{\ghr}[9]{\ghtable{\ghtr{}}{\ghlink{#1/#2}{#2}}{\ghlang{#3}}{\ghcom{#4}}{\ghadd{#5}}{\ghrem{#6}}{\ghstar{#7}}{\ghfork{#8}}{#9}}
-% \newcommand{\ghf}[9]{\ghtable{\ghtf{}}{\ghlink{#1/#2}{#2}}{\ghlang{#3}}{\ghcom{#4}}{\ghadd{#5}}{\ghrem{#6}}{\ghstar{#7}}{\ghfork{#8}}{#9}}
-
-% \begin{document}
-
-% \name{{\Huge Remy E. Goldschmidt}\\[12pt]}
-
-% \address{
-%   \email{remy.goldschmidt@gmail.com} \\
-%   \url{http://github.com/taktoa} \\
-%   \url{http://taktoa.me} \\
-%   \phone{+1 (914) 703-5652}
-% }
-
-% \begin{resume}
-
-% \section{Education}
-% University of Illinois at Urbana-Champaign, class of 2018 \\
-% Major: Bachelor of Science in Aerospace Engineering \\
-% Minor: Computer Science
-
-% \section{Work \\ Experience}
-% UIUC Formal Systems Laboratory \hfill 2015--
-%   \begin{itemize} \itemsep -2pt
-%     \item Worked on software for executable semantics using rewrite logic.
-%     \item Wrote Java to generate OCaml interpreters from semantic specifications
-%     \item \ghub{Java}{taktoa/k}{19062}{15342}
-%     \item Reference: \href{http://tinyurl.com/grigore-rosu}{Dr. Grigore Rosu}
-%   \end{itemize}
-
-% Columbia University Applied Physics / Applied Math \hfill 2013--2014
-%   \begin{itemize} \itemsep -2pt
-%     \item Designed and built a sealed standing-wave thermoacoustic refrigerator
-%     \item Studied the effect of waveform input on efficiency in thermoacoustics
-%     \item \ghub{Haskell}{taktoa/ThermoCalc}{4674}{2548}
-%     \item Reference: \href{http://tinyurl.com/i-cevdet-noyan}{Dr.\ I.\ C.\ Noyan}
-%   \end{itemize}
-
-% Duke University Neutrino Group \hfill 2012--2013
-%   \begin{itemize} \itemsep -2pt
-%     \item Designed data analysis software using ROOT, Geant4, and MATLAB
-%     \item Determined the rate of neutrino/muon coincidence events in Super-Kamiokande
-%     \item Reference: \href{http://tinyurl.com/kate-scholberg}{Dr.\ Kate Scholberg}
-%   \end{itemize}
-
-% \section{Activities}
-% Open Source Programming \\
-%   \begin{tabular}{l l l l l l l l l} \\
-%     \ghf{taktoa}{k}{Java}{185}{19062}{15342}{0}{50}{2015}
-%     \ghr{taktoa}{ThomasEngine}{Racket}{60}{4142}{2023}{2}{0}{2014}
-%     \ghr{taktoa}{ThermoCalc}{Haskell}{59}{4850}{2718}{0}{0}{2014}
-%     \ghr{taktoa}{TSBot}{Haskell}{51}{4223}{2076}{0}{0}{2015}
-%     \ghr{taktoa}{xprintidle-ng}{C}{44}{4308}{12428}{0}{1}{2015}
-%     \ghr{taktoa}{Control-Theory}{Haskell}{39}{489}{374}{2}{0}{2014}
-%     \ghr{taktoa}{HSCalculator}{Haskell}{39}{2841}{1255}{0}{0}{2015}
-%     \ghr{taktoa}{icfp-2015}{Haskell}{36}{1381}{1220}{0}{0}{2015}
-%     \ghf{taktoa}{nixpkgs}{Nix}{31}{568}{36}{0}{923}{2015}
-%     \ghr{taktoa}{TSBannerGen}{Haskell}{28}{1778}{549}{0}{0}{2014}
-%     \ghr{taktoa}{OscFinder}{Haskell}{24}{261}{119}{0}{0}{2011}
-%     \ghr{taktoa}{SatOpt}{Haskell}{19}{2202}{514}{0}{0}{2015}
-%     \ghr{taktoa}{taktoa.github.io}{Clojure}{15}{1224}{1111}{0}{0}{2014}
-%     \ghr{taktoa}{wai-middleware-preprocessor}{Haskell}{12}{1194}{159}{0}{0}{2015}
-%     \ghr{taktoa}{server-config}{Nix}{10}{369}{65}{0}{0}{2015}
-%     \ghr{taktoa}{emacs-config}{ELisp}{9}{2245}{824}{0}{0}{2015}
-%     \ghr{taktoa}{SpaceElevator}{Haskell}{7}{659}{100}{0}{0}{2013}
-%     \ghr{taktoa}{haskell-project-template}{Haskell}{7}{781}{248}{0}{0}{2015}
-%     \ghr{sebmathguy}{chatex}{Haskell}{6}{37}{21}{0}{0}{2015}
-%     \ghr{taktoa}{sptext}{Racket}{5}{848}{8}{0}{0}{2014}
-%     \ghf{taktoa}{oh-my-zsh}{zsh}{5}{86}{9}{0}{7970}{2015}
-%     \ghr{taktoa}{flycheck-pmd}{ELisp}{5}{832}{12}{0}{0}{2015}
-%     \ghr{taktoa}{pendulum}{Haskell}{5}{522}{301}{0}{0}{2015}
-%     \ghr{taktoa}{CISExplorer}{Haskell}{5}{852}{5}{0}{0}{2014}
-%     \ghr{taktoa}{TestGL}{Haskell}{4}{724}{36}{0}{0}{2015}
-%     \ghr{taktoa}{SleepTracker}{Java}{4}{1013}{55}{0}{0}{2014}
-%     \ghr{taktoa}{TSRecall}{Clojure}{4}{795}{40}{0}{0}{2014}
-%     \ghr{taktoa}{taktoa-resume}{\LaTeX}{4}{970}{10}{0}{0}{2015}
-%     \ghr{taktoa}{hskpipe}{Haskell}{4}{2609}{525}{0}{0}{2015}
-%     \ghr{taktoa}{PlaneOpt}{Haskell}{4}{314}{4}{0}{0}{2015}
-%     \ghr{taktoa}{useful}{Markdown}{4}{149}{4}{0}{0}{2015}
-%     \ghr{taktoa}{differential-forms-notes}{\LaTeX}{3}{190}{1}{0}{0}{2014}
-%     \ghf{taktoa}{oh-my-fish}{fish}{3}{94}{1}{0}{318}{2015}
-%     \ghr{taktoa}{ThomasEngine2}{Guile}{3}{1792}{34}{0}{0}{2015}
-%     \ghr{taktoa}{RacketTSBannerGen}{Racket}{3}{994}{6}{0}{0}{2015}
-%     \ghr{taktoa}{solderj}{Java}{2}{156}{0}{0}{0}{2015}
-%     \ghr{taktoa}{HaxxitJ}{Java}{2}{327}{0}{2}{0}{2012}
-%     \ghf{taktoa}{wiwikwln}{Markdown}{2}{3114}{1260}{0}{1}{2015}
-%     \ghf{taktoa}{k-editor-support}{ELisp}{2}{6}{10}{0}{4}{2015}
-%     \ghr{taktoa}{Diogenes}{Clojure}{2}{1105}{34}{0}{0}{2015}
-%     \ghr{taktoa}{TSLogAnalyzer}{Haskell}{1}{1185}{0}{0}{0}{2014}
-%     \ghf{taktoa}{Scrot-and-imgur-zenity-GUI}{bash}{1}{5}{3}{0}{8}{2014}
-%     \ghr{taktoa}{guile-project-template}{Guile}{1}{1309}{0}{0}{0}{2015}
-%     \ghf{taktoa}{commercialhaskell}{Markdown}{1}{1}{0}{0}{89}{2015}
-%     \ghf{taktoa}{Haxxit}{Python}{0}{0}{0}{0}{1}{2011}
-%     \ghf{taktoa}{cedet}{ELisp}{0}{0}{0}{0}{4}{2015}
-%     \ghf{taktoa}{willie}{Python}{0}{0}{0}{0}{266}{2015}
-%   \end{tabular}
-
-% Rocketry \hfill 2008--2011
-%   \begin{itemize} \itemsep -2pt
-%     \item Constructed three high-power model rockets using composite materials
-%     \item Designed GPS-logging avionics for these rockets
-%   \end{itemize}
-
-% Columbia University Science Honors Program \hfill 2012--2014
-
-% University of Illinois ACM SIGPLAN \hfill 2014--
-%   \begin{itemize} \itemsep -2pt
-%     \item Founder and chair
-%     \item Group for discussion of programming language theory and related subjects
-%   \end{itemize}
-
-% \section{Awards}
-% Team America Rocketry Challenge --- National Finalist \hfill 2011 \\
-% Westchester ISEF --- Association of Geoscientists Award \hfill 2013 \\
-% Westchester ISEF --- 4th Place in Engineering \hfill 2014 \\
-
-% \section{Skills}
-%   \begin{tabular}{l p{4in}} \\
-%     Languages   & English (native), Latin (5 yrs) \\
-%     Programming & Haskell (4 yrs), Java, Clojure, Python, OCaml, MATLAB \\
-%     Software    & Linux (8 yrs), git, ROOT \\
-%     CAD         & SolidWorks, Siemens NX, EAGLE \\
-%     Other       & Emacs, \LaTeX
-%   \end{tabular}
-
-% \newpage
-
-% \section{Education}
-%   \begin{tabular}{l p{1in} l}
-%     \\
-%     \multicolumn{3}{c}{Courses taken} \\
-%     \\
-%     AE 100           & \hfill & Introduction to Aerospace Engineering \\
-%     AE 199           & \hfill & Aerospace Computer-Aided Design \\
-%     AE 202           & \hfill & Aerospace Flight Mechanics \\
-%     CS 125           & \hfill & Introduction to Computer Science \\
-%     CS 422           & \hfill & Programming Language Design \\
-%     ECE 205/206      & \hfill & Electronic Circuits + Lab \\
-%     MATH 221/231/241 & \hfill & Calculus I/II/III \\
-%     MATH 225         & \hfill & Introductory Matrix Theory \\
-%     ME 300           & \hfill & Thermodynamics \\
-%     MSE 280          & \hfill & Engineering Materials \\
-%     PHYS 211/212     & \hfill & Physics: Mechanics / E\&M \\
-%     STAT 100/200     & \hfill & Statistics I/II \\
-%     TAM 210          & \hfill & Introduction to Statics \\
-%     TAM 212          & \hfill & Introduction to Dynamics \\
-%     \\
-%     \multicolumn{3}{c}{Fall 2015 courses} \\
-%     \\
-%     AE 311           & \hfill & Incompressible Flow \\
-%     AE 321           & \hfill & Mechanics of Aerospace Structures \\
-%     AE 352           & \hfill & Aerospace Dynamical Systems \\
-%     IE 300           & \hfill & Analysis of Data \\
-%     \\
-%   \end{tabular}
-
-% \section{Other Courses}
-%   \begin{tabular}{l p{1in} l}
-%     \\
-%     \multicolumn{3}{c}{Columbia Science Honors Program} \\
-%     \\
-%     Relativity and Quantum Mechanics              & \hfill & Fall 2012 \\
-%     Computer Programming in Java                  & \hfill & Spring 2012 \\
-%     Mathematical Methods in the Physical Sciences & \hfill & Spring 2013 \\
-%     Astronomy and Astrophysics                    & \hfill & Fall 2013 \\
-%     Group Theory                                  & \hfill & Spring 2014 \\
-%   \end{tabular}
-
-% \end{resume}
-% \end{document}
