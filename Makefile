@@ -7,6 +7,8 @@ LANGUAGETOOL = languagetool -l en-US -d ${DRULES}
 
 PREVIEWER := zathura
 
+KILL_COMMAND = ps | grep ${PREVIEWER} | sed 's/^[ ]*//g' | grep -o '^[0-9]* '
+
 proj := ${shell cat project}
 
 all: test build
@@ -18,7 +20,7 @@ continuous: ${proj}.tex
 	trap "make clean" SIGINT; latexmk -xelatex -pvc -pdf ${proj}.tex
 
 kill-evince:
-	N="$$(ps | grep ${PREVIEWER} | grep -o '^[0-9]* ')"; kill $$N &>/dev/null || true
+	N="$$(${KILL_COMMAND})"; kill $$N &>/dev/null || true
 
 clean: kill-evince
 	latexmk -c

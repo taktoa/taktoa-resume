@@ -11,6 +11,7 @@
 \defaultfontfeatures{
     Path = /home/remy/Documents/NotWork/Projects/LaTeX/taktoa-resume/fonts/}
 
+% Add GitHub Octicons font
 \newfontfamily{\githubfont}{Octicons}
 \newcommand{\ghOctocat}{{\githubfont\char"F209}}
 \newcommand{\ghCommit}{{\githubfont\char"F01F}}
@@ -37,6 +38,7 @@
 % adjust the page margins
 \usepackage[scale=0.75]{geometry}
 
+% extra packages
 \usepackage{booktabs}
 
 % if you want to change the width of the column with the dates
@@ -62,12 +64,8 @@
 \newcommand{\ghrepo}[1]{\ghlink{#1}{\ghOctocat}}
 \newcommand{\ghlang}[1]{\texttt{#1}}
 \newcommand{\ghcom}[1]{\textcolor[HTML]{666666}{\ghCommit{} #1}}
-%\faicon{minus-sign}
-%\faicon{plus-sign}
 \newcommand{\ghadd}[1]{\textcolor[HTML]{6CC644}{\faicon{plus-sign} #1}}
 \newcommand{\ghrem}[1]{\textcolor[HTML]{BD2C00}{\faicon{minus-sign} #1}}
-%\newcommand{\ghadd}[1]{\textcolor[HTML]{6CC644}{+ #1}}
-%\newcommand{\ghrem}[1]{\textcolor[HTML]{BD2C00}{- #1}}
 \newcommand{\ghstar}[1]{#1}
 \newcommand{\ghfork}[1]{#1}
 \newcommand{\ghtr}[0]{}
@@ -75,26 +73,18 @@
 
 \newcommand{\ghub}[4]{\ghrepo{#2} | \ghlang{#1} | \ghadd{#3} | \ghrem{#4}}
 \newcommand{\ghtable}[6]{#1 & #2 & #3 & #4 & #5 & #6 \\}
-\newcommand{\ghr}[9]{
-  \ghtable{\ghtr{}}
-          {\ghlink{#1/#2}{#2}}
-          {\ghlang{#3}}
-          {\ghcom{#4}}
-          {\ghadd{#5}}
-          {\ghrem{#6}}%
-}
-\newcommand{\ghf}[9]{
-  \ghtable{\ghtf{}}
-          {\ghlink{#1/#2}{#2}}
-          {\ghlang{#3}}
-          {\ghcom{#4}}
-          {\ghadd{#5}}
-          {\ghrem{#6}}%
+\newcommand{\ght}[9]{%
+  \ghtable{#1}
+          {\ghlink{#2/#3}{#3}}
+          {\ghlang{#4}}
+          {\ghcom{#5}}
+          {\ghadd{#6}}
+          {\ghrem{#7}}%
 }
 
 
 \begin{document}
-\makecvtitle
+\makecvtitle{}
 
 \section{Education}
 \cventry{2014--2018}
@@ -104,11 +94,11 @@
         {Majoring in aerospace engineering, minoring in computer science}
 
 \section{Work Experience}
-\cventry{2015--2016}
+\cventry{2015--}
         {Research Intern}
         {UIUC Formal Systems Laboratory}
         {}{}{
-Reference: \wlink{http://tinyurl.com/grigore-rosu}{Dr. Grigore Rosu}
+Reference: \wlink{http://tinyurl.com/grigore-rosu}{Dr.\ Grigore Rosu}
 \begin{itemize}
 \item Worked on software for executable semantics using rewrite logic
 \item Wrote Java to generate OCaml interpreters from semantic specifications
@@ -127,17 +117,6 @@ Reference: \wlink{http://tinyurl.com/i-cevdet-noyan}{Dr.\ I.\ C.\ Noyan}
 \item \ghub{Haskell}{taktoa/ThermoCalc}{4674}{2548}
 \end{itemize}
 }
-      
-%\cventry{2012--2013}
-%        {Research Intern}
-%        {Duke University Neutrino Group}
-%        {}{}{
-%Reference: \wlink{http://tinyurl.com/kate-scholberg}{Dr.\ Kate Scholberg}
-%\begin{itemize}
-%\item Designed data analysis software using ROOT, Geant4, and MATLAB
-%\item Determined the rate of neutrino/muon coincidence events in Super-Kamiokande
-%\end{itemize}
-%}
 
 \section{Activities}
 \cventry{2014--}
@@ -152,60 +131,55 @@ Reference: \wlink{http://tinyurl.com/i-cevdet-noyan}{Dr.\ I.\ C.\ Noyan}
         {Open Source Programming}
         {}{}{
 \setlength{\tabcolsep}{8pt}
-\vspace{0mm}
-%\begin{tabular}{l l l l l l l l l}
 \begin{tabular}{l l l l l l}
-  %{} & Name & Language & Com. & Added & Removed \\
-  %\midrule
-  %{} & {} & {} & {} & {} & {} & {} & {} & {} \\
   \midrule
-  \ghf{taktoa}{k}{Java}{185}{19062}{15342}{0}{50}{2015}
-  \ghr{taktoa}{ThomasEngine}{Racket}{60}{4142}{2023}{2}{0}{2014}
-  \ghr{taktoa}{ThermoCalc}{Haskell}{59}{4850}{2718}{0}{0}{2014}
-  %\ghr{taktoa}{TSBot}{Haskell}{51}{4223}{2076}{0}{0}{2015}
-  \ghr{taktoa}{xprintidle-ng}{C}{44}{4308}{12428}{0}{1}{2015}
-  %\ghr{taktoa}{Control-Theory}{Haskell}{39}{489}{374}{2}{0}{2014}
-  %\ghr{taktoa}{HSCalculator}{Haskell}{39}{2841}{1255}{0}{0}{2015}
-  \ghr{sebmathguy}{icfp-2015}{Haskell}{36}{1381}{1220}{0}{0}{2015}
-  \ghf{taktoa}{nixpkgs}{Nix}{31}{568}{36}{0}{923}{2015}
-  %\ghr{taktoa}{TSBannerGen}{Haskell}{28}{1778}{549}{0}{0}{2014}
-  %\ghr{taktoa}{OscFinder}{Haskell}{24}{261}{119}{0}{0}{2011}
-  %\ghr{taktoa}{SatOpt}{Haskell}{19}{2202}{514}{0}{0}{2015}
-  %\ghr{taktoa}{taktoa.github.io}{Clojure}{15}{1224}{1111}{0}{0}{2014}
-  %\ghr{taktoa}{wai-middleware-preprocessor}{Haskell}{12}{1194}{159}{0}{0}{2015}
-  %\ghr{taktoa}{server-config}{Nix}{10}{369}{65}{0}{0}{2015}
-  %\ghr{taktoa}{emacs-config}{ELisp}{9}{2245}{824}{0}{0}{2015}
-  %\ghr{taktoa}{SpaceElevator}{Haskell}{7}{659}{100}{0}{0}{2013}
-  %\ghr{taktoa}{haskell-project-template}{Haskell}{7}{781}{248}{0}{0}{2015}
-  %\ghr{sebmathguy}{chatex}{Haskell}{6}{37}{21}{0}{0}{2015}
-  %\ghr{taktoa}{sptext}{Racket}{5}{848}{8}{0}{0}{2014}
-  %\ghf{taktoa}{oh-my-zsh}{zsh}{5}{86}{9}{0}{7970}{2015}
-  %\ghr{taktoa}{flycheck-pmd}{ELisp}{5}{832}{12}{0}{0}{2015}
-  %\ghr{taktoa}{pendulum}{Haskell}{5}{522}{301}{0}{0}{2015}
-  %\ghr{taktoa}{CISExplorer}{Haskell}{5}{852}{5}{0}{0}{2014}
-  %\ghr{taktoa}{TestGL}{Haskell}{4}{724}{36}{0}{0}{2015}
-  %\ghr{taktoa}{SleepTracker}{Java}{4}{1013}{55}{0}{0}{2014}
-  %\ghr{taktoa}{TSRecall}{Clojure}{4}{795}{40}{0}{0}{2014}
-  %\ghr{taktoa}{taktoa-resume}{\LaTeX}{4}{970}{10}{0}{0}{2015}
-  %\ghr{taktoa}{hskpipe}{Haskell}{4}{2609}{525}{0}{0}{2015}
-  %\ghr{taktoa}{PlaneOpt}{Haskell}{4}{314}{4}{0}{0}{2015}
-  %\ghr{taktoa}{useful}{Markdown}{4}{149}{4}{0}{0}{2015}
-  %\ghr{taktoa}{differential-forms-notes}{\LaTeX}{3}{190}{1}{0}{0}{2014}
-  %\ghf{taktoa}{oh-my-fish}{fish}{3}{94}{1}{0}{318}{2015}
-  %\ghr{taktoa}{ThomasEngine2}{Guile}{3}{1792}{34}{0}{0}{2015}
-  %\ghr{taktoa}{RacketTSBannerGen}{Racket}{3}{994}{6}{0}{0}{2015}
-  %\ghr{taktoa}{solderj}{Java}{2}{156}{0}{0}{0}{2015}
-  %\ghr{taktoa}{HaxxitJ}{Java}{2}{327}{0}{2}{0}{2012}
-  %\ghf{taktoa}{wiwikwln}{Markdown}{2}{3114}{1260}{0}{1}{2015}
-  %\ghf{taktoa}{k-editor-support}{ELisp}{2}{6}{10}{0}{4}{2015}
-  %\ghr{taktoa}{Diogenes}{Clojure}{2}{1105}{34}{0}{0}{2015}
-  %\ghr{taktoa}{TSLogAnalyzer}{Haskell}{1}{1185}{0}{0}{0}{2014}
-  %\ghf{taktoa}{Scrot-and-imgur-zenity-GUI}{bash}{1}{5}{3}{0}{8}{2014}
-  %\ghr{taktoa}{guile-project-template}{Guile}{1}{1309}{0}{0}{0}{2015}
-  %\ghf{taktoa}{commercialhaskell}{Markdown}{1}{1}{0}{0}{89}{2015}
-  %\ghf{taktoa}{Haxxit}{Python}{0}{0}{0}{0}{1}{2011}
-  %\ghf{taktoa}{cedet}{ELisp}{0}{0}{0}{0}{4}{2015}
-  %\ghf{taktoa}{willie}{Python}{0}{0}{0}{0}{266}{2015}
+  \ght{\ghtf{}}{taktoa}{k}{Java}{185}{19062}{15342}{0}{50}
+  \ght{\ghtr{}}{taktoa}{ThomasEngine}{Racket}{60}{4142}{2023}{2}{0}
+  \ght{\ghtr{}}{taktoa}{ThermoCalc}{Haskell}{59}{4850}{2718}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{TSBot}{Haskell}{51}{4223}{2076}{0}{0}
+  \ght{\ghtr{}}{taktoa}{xprintidle-ng}{C}{44}{4308}{12428}{0}{1}
+  %\ght{\ghtr{}}{taktoa}{Control-Theory}{Haskell}{39}{489}{374}{2}{0}
+  %\ght{\ghtr{}}{taktoa}{HSCalculator}{Haskell}{39}{2841}{1255}{0}{0}
+  \ght{\ghtr{}}{sebmathguy}{icfp-2015}{Haskell}{36}{1381}{1220}{0}{0}
+  \ght{\ghtf{}}{taktoa}{nixpkgs}{Nix}{31}{568}{36}{0}{923}
+  %\ght{\ghtr{}}{taktoa}{TSBannerGen}{Haskell}{28}{1778}{549}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{OscFinder}{Haskell}{24}{261}{119}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{SatOpt}{Haskell}{19}{2202}{514}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{taktoa.github.io}{Clojure}{15}{1224}{1111}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{wai-middleware-preprocessor}{Haskell}{12}{1194}{159}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{server-config}{Nix}{10}{369}{65}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{emacs-config}{ELisp}{9}{2245}{824}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{SpaceElevator}{Haskell}{7}{659}{100}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{haskell-project-template}{Haskell}{7}{781}{248}{0}{0}
+  %\ght{\ghtr{}}{sebmathguy}{chatex}{Haskell}{6}{37}{21}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{sptext}{Racket}{5}{848}{8}{0}{0}
+  %\ght{\ghtf{}}{taktoa}{oh-my-zsh}{zsh}{5}{86}{9}{0}{7970}
+  %\ght{\ghtr{}}{taktoa}{flycheck-pmd}{ELisp}{5}{832}{12}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{pendulum}{Haskell}{5}{522}{301}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{CISExplorer}{Haskell}{5}{852}{5}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{TestGL}{Haskell}{4}{724}{36}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{SleepTracker}{Java}{4}{1013}{55}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{TSRecall}{Clojure}{4}{795}{40}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{taktoa-resume}{\LaTeX}{4}{970}{10}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{hskpipe}{Haskell}{4}{2609}{525}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{PlaneOpt}{Haskell}{4}{314}{4}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{useful}{Markdown}{4}{149}{4}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{differential-forms-notes}{\LaTeX}{3}{190}{1}{0}{0}
+  %\ght{\ghtf{}}{taktoa}{oh-my-fish}{fish}{3}{94}{1}{0}{318}
+  %\ght{\ghtr{}}{taktoa}{ThomasEngine2}{Guile}{3}{1792}{34}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{RacketTSBannerGen}{Racket}{3}{994}{6}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{solderj}{Java}{2}{156}{0}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{HaxxitJ}{Java}{2}{327}{0}{2}{0}
+  %\ght{\ghtf{}}{taktoa}{wiwikwln}{Markdown}{2}{3114}{1260}{0}{1}
+  %\ght{\ghtf{}}{taktoa}{k-editor-support}{ELisp}{2}{6}{10}{0}{4}
+  %\ght{\ghtr{}}{taktoa}{Diogenes}{Clojure}{2}{1105}{34}{0}{0}
+  %\ght{\ghtr{}}{taktoa}{TSLogAnalyzer}{Haskell}{1}{1185}{0}{0}{0}
+  %\ght{\ghtf{}}{taktoa}{Scrot-and-imgur-zenity-GUI}{bash}{1}{5}{3}{0}{8}
+  %\ght{\ghtr{}}{taktoa}{guile-project-template}{Guile}{1}{1309}{0}{0}{0}
+  %\ght{\ghtf{}}{taktoa}{commercialhaskell}{Markdown}{1}{1}{0}{0}{89}
+  %\ght{\ghtf{}}{taktoa}{Haxxit}{Python}{0}{0}{0}{0}{1}
+  %\ght{\ghtf{}}{taktoa}{cedet}{ELisp}{0}{0}{0}{0}{4}
+  %\ght{\ghtf{}}{taktoa}{willie}{Python}{0}{0}{0}{0}{266}
   \midrule
 \end{tabular}
 }
@@ -232,8 +206,17 @@ Maintainer for %
 
 \section{Skills}
 \cvitem{Languages}{English (native), Latin (5 yrs)}
-\cvitem{Programming}{Haskell (5 yrs), Java, Clojure, Python, OCaml, MATLAB}
-\cvitem{Software}{Linux (9 yrs), git, ROOT}
+\cvitem{Programming}{%
+  Haskell (5 yrs), %
+  Java, C/C++, %
+  Clojure, Racket, OCaml, %
+  Python, MATLAB, Mathematica%
+}
+\cvitem{Software}{%
+  Linux (9 yrs), git, %
+  GNU toolchain, %
+  ROOT, Geant4%
+}
 \cvitem{CAD}{SolidWorks, Siemens NX, EAGLE}
 \cvitem{Other}{Emacs, \LaTeX, NixOS}
 
