@@ -5,7 +5,7 @@ DRULES=${DRULES_1},${DRULES_2},${DRULES_3}
 
 LANGUAGETOOL = languagetool -l en-US -d ${DRULES}
 
-PREVIEWER := zathura
+PREVIEWER := evince
 
 KILL_COMMAND = ps | grep ${PREVIEWER} | sed 's/^[ ]*//g' | grep -o '^[0-9]* '
 
@@ -14,7 +14,7 @@ proj := ${shell cat project}
 all: test build
 
 build: ${proj}.tex
-	latexmk -xelatex -pdf ${proj}.tex
+	latexmk -pdf ${proj}.tex
 
 continuous: ${proj}.tex
 	trap "make clean" SIGINT; latexmk -xelatex -pvc -pdf ${proj}.tex

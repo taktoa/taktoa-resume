@@ -6,22 +6,18 @@
 %   font family (sans and roman)
 \documentclass[10pt,letterpaper,sans]{moderncv}
 
-% Fix fonts in XeTeX
-\usepackage{fontspec}
-\defaultfontfeatures{
-    Path = /home/remy/Documents/NotWork/Projects/LaTeX/taktoa-resume/fonts/}
-
 % Add GitHub Octicons font
-\newfontfamily{\githubfont}{Octicons}
-\newcommand{\ghOctocat}{{\githubfont\char"F00A}}
-\newcommand{\ghCommit}{{\githubfont\char"F01F}}
-\newcommand{\ghAdd}{{\githubfont\char"F06B}}
-\newcommand{\ghRem}{{\githubfont\char"F06C}}
+%\newfontfamily{\githubfont}{Octicons}
+\newcommand{\ghOctocat}{octocat} %{{\githubfont\char"F00A}}
+\newcommand{\ghCommit}{commit} %{{\githubfont\char"F01F}}
+\newcommand{\ghAdd}{add} %{{\githubfont\char"F06B}}
+\newcommand{\ghRem}{rem} %{{\githubfont\char"F06C}}
 
 % style options are casual (default), classic, banking, oldstyle and fancy
 % color options black, blue (default), burgundy, green, grey, orange, and red
 \moderncvstyle{casual}
 \moderncvcolor{blue}
+\moderncvicons{marvosym}
 
 % to set the default font:
 %   use \sfdefault for the default sans serif font
@@ -33,7 +29,7 @@
 \nopagenumbers{}
 
 % character encoding
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
 
 % adjust the page margins
 \usepackage[scale=0.75]{geometry}
@@ -64,12 +60,12 @@
 \newcommand{\ghrepo}[1]{\ghlink{#1}{\ghOctocat}}
 \newcommand{\ghlang}[1]{\texttt{#1}}
 \newcommand{\ghcom}[1]{\textcolor[HTML]{666666}{\ghCommit{} #1}}
-\newcommand{\ghadd}[1]{\textcolor[HTML]{30A622}{\faicon{plus-sign} #1}}
-\newcommand{\ghrem}[1]{\textcolor[HTML]{BD2C00}{\faicon{minus-sign} #1}}
+\newcommand{\ghadd}[1]{\textcolor[HTML]{30A622}{{+} #1}}
+\newcommand{\ghrem}[1]{\textcolor[HTML]{BD2C00}{{-} #1}}
 \newcommand{\ghstar}[1]{#1}
 \newcommand{\ghfork}[1]{#1}
 \newcommand{\ghtr}[0]{}
-\newcommand{\ghtf}[0]{\faCodeFork}
+\newcommand{\ghtf}[0]{fork} %\faCodeFork}
 
 \newcommand{\ghub}[4]{\ghrepo{#2} | \ghlang{#1} | \ghadd{#3} | \ghrem{#4}}
 \newcommand{\ghtable}[6]{#1 & #2 & #3 & #4 & #5 & #6 \\}

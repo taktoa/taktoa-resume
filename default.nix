@@ -2,27 +2,30 @@ with import <nixpkgs> {};
 
 stdenv.mkDerivation rec {
   name = "latex-environment";
-  
-  latexPkgs = [
-    texLive
-    texLiveExtra
-    texLiveCMSuper
-    lmodern
-    tipa
-  ];
-  
+
+  #latexPkgs = [
+    #  texLive
+    #texLiveExtra
+    #texLiveCMSuper
+    #lmodern
+    #tipa
+    #];
+
   buildInputs = [
     git
     zsh
     gnumake
-    haskellngPackages.pandoc
+    pandoc
     python34Packages.pygments
-    languagetool
-    (pkgs.texLiveAggregationFun { paths = latexPkgs; })
+    #(pkgs.texLiveAggregationFun { paths = latexPkgs; })
+    (texlive.combine {
+      inherit (texlive) scheme-full collection-xetex moderncv
+                        tipa fontawesome;
+     })
   ];
 
-  shellHook = ''
-      IN_NIX="nix" zsh
-      exit
-  '';
+  #shellHook = ''
+  #IN_NIX="nix" zsh
+  #exit
+  #'';
 }
