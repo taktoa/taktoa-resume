@@ -11,13 +11,13 @@ KILL_COMMAND = ps | grep ${PREVIEWER} | sed 's/^[ ]*//g' | grep -o '^[0-9]* '
 
 proj := ${shell cat project}
 
-all: test build
+all: build test
 
 build: ${proj}.tex
 	latexmk -pdf ${proj}.tex
 
 continuous: ${proj}.tex
-	trap "make clean" SIGINT; latexmk -xelatex -pvc -pdf ${proj}.tex
+	trap "make clean" SIGINT; latexmk -pvc -pdf ${proj}.tex
 
 kill-evince:
 	N="$$(${KILL_COMMAND})"; kill $$N &>/dev/null || true

@@ -14,18 +14,24 @@ stdenv.mkDerivation rec {
   buildInputs = [
     git
     zsh
+    evince
     gnumake
     pandoc
     python34Packages.pygments
     #(pkgs.texLiveAggregationFun { paths = latexPkgs; })
     (texlive.combine {
-      inherit (texlive) scheme-full collection-xetex moderncv
-                        tipa fontawesome;
-     })
+      inherit (texlive) scheme-medium collection-xetex;
+      inherit (texlive) moderncv tipa fontawesome;
+      pkgFilter = pkg: lib.any (x: x) [
+        (pkg.tlType == "run")
+        (pkg.tlType == "bin")
+        (pkg.pname == "fontawesome")
+      ];
+    })
   ];
 
-  #shellHook = ''
-  #IN_NIX="nix" zsh
-  #exit
-  #'';
+  shellHook = ''
+      zsh
+      exit
+  '';
 }

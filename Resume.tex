@@ -6,18 +6,31 @@
 %   font family (sans and roman)
 \documentclass[10pt,letterpaper,sans]{moderncv}
 
-% Add GitHub Octicons font
-%\newfontfamily{\githubfont}{Octicons}
-\newcommand{\ghOctocat}{octocat} %{{\githubfont\char"F00A}}
-\newcommand{\ghCommit}{commit} %{{\githubfont\char"F01F}}
-\newcommand{\ghAdd}{add} %{{\githubfont\char"F06B}}
-\newcommand{\ghRem}{rem} %{{\githubfont\char"F06C}}
+%\usepackage{fontspec}
+
+\usepackage{tikz}
+
+\newcommand{\ghCommit}[1]{%
+\begin{tikzpicture}[y=0.7pt,x=0.7pt,yscale=-1, inner sep=0pt, outer sep=0pt]%
+  \path[even odd rule,fill=#1]%
+  (10.86,7.00) .. controls (10.41,5.28) and%
+  (8.86,4.00) .. (7.00,4.00) .. controls (5.14,4.00) and%
+  (3.59,5.28) .. (3.14,7.00) -- (0.00,7.00) -- (0.00,9.00) --%
+  (3.14,9.00) .. controls (3.59,10.72) and (5.14,12.00) ..%
+  (7.00,12.00) .. controls (8.86,12.00) and (10.41,10.72) ..%
+  (10.86,9.00) -- (14.00,9.00) -- (14.00,7.00) -- (10.86,7.00)%
+  -- cycle(7.00,10.20) .. controls (5.78,10.20) and (4.80,9.22) ..%
+  (4.80,8.00) .. controls (4.80,6.78) and (5.78,5.80) ..%
+  (7.00,5.80) .. controls (8.22,5.80) and (9.20,6.78) ..%
+  (9.20,8.00) .. controls (9.20,9.22) and (8.22,10.20) ..%
+  (7.00,10.20) -- cycle;%
+\end{tikzpicture}}
 
 % style options are casual (default), classic, banking, oldstyle and fancy
 % color options black, blue (default), burgundy, green, grey, orange, and red
 \moderncvstyle{casual}
 \moderncvcolor{blue}
-\moderncvicons{marvosym}
+%\moderncvicons{marvosym}
 
 % to set the default font:
 %   use \sfdefault for the default sans serif font
@@ -57,15 +70,15 @@
 }
 
 \newcommand{\ghlink}[2]{\wlink{https://github.com/#1}{#2}}
-\newcommand{\ghrepo}[1]{\ghlink{#1}{\ghOctocat}}
+\newcommand{\ghrepo}[1]{\ghlink{#1}{\faGithub}}
 \newcommand{\ghlang}[1]{\texttt{#1}}
 \newcommand{\ghcom}[1]{\textcolor[HTML]{666666}{\ghCommit{} #1}}
-\newcommand{\ghadd}[1]{\textcolor[HTML]{30A622}{{+} #1}}
-\newcommand{\ghrem}[1]{\textcolor[HTML]{BD2C00}{{-} #1}}
+\newcommand{\ghadd}[1]{\textcolor[HTML]{30A622}{{\faPlusCircle} #1}}
+\newcommand{\ghrem}[1]{\textcolor[HTML]{BD2C00}{{\faMinusCircle} #1}}
 \newcommand{\ghstar}[1]{#1}
 \newcommand{\ghfork}[1]{#1}
 \newcommand{\ghtr}[0]{}
-\newcommand{\ghtf}[0]{fork} %\faCodeFork}
+\newcommand{\ghtf}[0]{\faCodeFork}
 
 \newcommand{\ghub}[4]{\ghrepo{#2} | \ghlang{#1} | \ghadd{#3} | \ghrem{#4}}
 \newcommand{\ghtable}[6]{#1 & #2 & #3 & #4 & #5 & #6 \\}
@@ -88,7 +101,6 @@
         {University of Illinois at Urbana-Champaign}
         {}{}
         {}
-
 \section{Work Experience}
 \cventry{Summer 2016}
         {Software Engineering Intern}
