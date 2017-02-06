@@ -13,10 +13,9 @@ proj := ${shell cat project}
 
 all: build test
 
-build: ${proj}.tex
-	latexmk -pdf ${proj}.tex
+build: ${proj}.pdf ${proj}.html
 
-continuous: ${proj}.tex
+continuous:
 	trap "make clean" SIGINT; latexmk -pvc -pdf ${proj}.tex
 
 kill-evince:
@@ -27,3 +26,9 @@ clean: kill-evince
 
 test:
 	pandoc -f latex -t markdown ${proj}.tex | ${LANGUAGETOOL} -
+
+${proj}.pdf: ${proj}.tex
+	latexmk -pdf ${proj}.tex
+
+${proj}.html: ${proj}.pdf
+	pdf2htmlEX --zoom 2 --optimize-text 1 ${proj}.pdf
