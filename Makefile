@@ -31,4 +31,4 @@ ${proj}.pdf: ${proj}.tex
 	latexmk -pdf ${proj}.tex
 
 ${proj}.html: ${proj}.pdf
-	pdf2htmlEX --zoom 2 --optimize-text 1 ${proj}.pdf
+	pdf2htmlEX --zoom 1.5 --optimize-text 1 ${proj}.pdf
