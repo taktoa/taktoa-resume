@@ -18,6 +18,7 @@ stdenv.mkDerivation rec {
     gnumake
     pandoc
     python34Packages.pygments
+    pdf2htmlEX
     #(pkgs.texLiveAggregationFun { paths = latexPkgs; })
     (texlive.combine {
       inherit (texlive) scheme-medium collection-xetex;
