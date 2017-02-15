@@ -31,4 +31,8 @@ ${proj}.pdf: ${proj}.tex
 	latexmk -pdf ${proj}.tex
 
 ${proj}.html: ${proj}.pdf
-	pdf2htmlEX --zoom 1.5 --optimize-text 1 ${proj}.pdf
+	rm -rf out
+	mkdir -pv out
+	pdf2htmlEX --embed cfijo --dest-dir out ${proj}.pdf
+	rm Resume.html
+	ln -sv out/Resume.html Resume.html
