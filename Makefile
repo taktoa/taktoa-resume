@@ -33,6 +33,6 @@ ${proj}.pdf: ${proj}.tex
 ${proj}.html: ${proj}.pdf
 	rm -rf out
 	mkdir -pv out
-	pdf2htmlEX --embed cfijo --dest-dir out ${proj}.pdf
+	pdf2htmlEX --embed cfijo --font-format woff --dest-dir out ${proj}.pdf
 	rm Resume.html
 	ln -sv out/Resume.html Resume.html
