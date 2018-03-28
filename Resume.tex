@@ -91,6 +91,12 @@
           {\ghrem{#7}}%
 }
 
+\newcommand{\lang}[1]{\texttt{#1}}
+
+\newcommand{\course}[2]{\texttt{#1 #2}}
+\newcommand{\credit}[0]{$\star$}
+
+\usepackage{tabularx}
 
 \begin{document}
 \makecvtitle{}
@@ -102,13 +108,18 @@
         {}{}
         {}
 
+%\vspace{0.6em}
+
 \section{Work Experience}
 \cventry{Summer 2017}
         {Software Engineering Intern}
         {\wlink{http://www.awakenetworks.com}{Awake Networks}}
         {}{}
         {
-Will be working on problems in network security with \texttt{Haskell} and \texttt{PureScript}.
+\begin{itemize}
+\item Worked on incrementalizing a \lang{Nix}-based build system using \lang{Haskell}.
+\item \ghub{Haskell}{awakesecurity/language-ninja}{34169}{21207}
+\end{itemize}
 }
 
 \cventry{Summer 2016}
@@ -116,7 +127,10 @@ Will be working on problems in network security with \texttt{Haskell} and \textt
         {\wlink{https://www.uber.com/info/atc}{Uber Advanced Technologies Center}}
         {}{}
         {
-Worked on infrastructure software for autonomous vehicles in \texttt{C++}.
+\begin{itemize}
+\item Worked on infrastructure software for autonomous vehicles in \lang{C++}.
+\item NDA prohibits me from elaborating any further.
+\end{itemize}
 }
 
 \cventry{Summer 2015}
@@ -124,8 +138,8 @@ Worked on infrastructure software for autonomous vehicles in \texttt{C++}.
         {\wlink{http://fsl.cs.illinois.edu}{UIUC Formal Systems Laboratory}}
         {}{}{
 \begin{itemize}
-\item Worked on software for executable semantics using rewrite logic.
-\item Wrote \texttt{Java} to generate \texttt{OCaml} interpreters from
+\item Worked on software for executable semantics using rewriting logic.
+\item Wrote \lang{Java} to generate \lang{OCaml} interpreters from
       semantic specifications.
 \item \ghub{Java}{taktoa/k}{19062}{15342}
 \end{itemize}
@@ -142,8 +156,11 @@ Worked on infrastructure software for autonomous vehicles in \texttt{C++}.
 \end{itemize}
 }
 
+%\vspace{0.6em}
+
 \section{Activities}
-\cventry{2014--}
+
+\cventry{2014--2017}
         {Club}
         {\wlink{http://category.engineering}{University of Illinois ACM SIGPLAN}}
         {Founder and chair}{}{
@@ -157,9 +174,12 @@ Group for discussion of programming language theory and related subjects.
 \setlength{\tabcolsep}{8pt}
 \begin{tabular}{l l l l l l}
   \midrule
+  \ght{\ghtr{}}{awakesecurity}{language-ninja}{Haskell}{277}{34169}{21207}{0}{23}
   \ght{\ghtf{}}{taktoa}{k}{Java}{185}{19062}{15342}{0}{50}
-  \ght{\ghtr{}}{taktoa}{ThomasEngine}{Racket}{60}{4142}{2023}{2}{0}
+  \ght{\ghtr{}}{taktoa}{ghcjs-electron}{Haskell}{66}{4697}{758}{0}{8}
+  %\ght{\ghtr{}}{taktoa}{ThomasEngine}{Racket}{60}{4142}{2023}{2}{0}
   \ght{\ghtr{}}{taktoa}{ThermoCalc}{Haskell}{59}{4850}{2718}{0}{0}
+  \ght{\ghtr{}}{taktoa}{pianoman}{C++}{56}{11671}{4765}{0}{0}
   \ght{\ghtr{}}{taktoa}{xprintidle-ng}{C}{44}{4308}{12428}{0}{1}
   \ght{\ghtr{}}{sebmathguy}{icfp-2015}{Haskell}{36}{1381}{1220}{0}{0}
   \ght{\ghtf{}}{taktoa}{nixpkgs}{Nix}{31}{568}{36}{0}{923}
@@ -186,72 +206,114 @@ Maintainer for %
 %WildHacks 2014, and HackIllinois 2015.
 % }
 
-\vspace{1em}
+%\vspace{0.6em}
 
 \section{Skills}
 %\cvitem{Languages}{English (native), Latin (5 yrs)}
 \cvitem{Programming}{%
-  \texttt{Haskell} (6 yrs), %
-  \texttt{Java}, \texttt{C}/\texttt{C++}, %
-  \texttt{Clojure}, \texttt{Racket}, \texttt{OCaml}, %
-  \texttt{Python}, \texttt{MATLAB}, \texttt{Mathematica}%
+  \href{https://en.wikipedia.org/wiki/Haskell_(programming_language)}{\lang{Haskell}} (7 yrs), %
+  \href{https://en.wikipedia.org/wiki/Nix_package_manager}{\lang{Nix}} (3 yrs), %
+  \href{https://en.wikipedia.org/wiki/Agda_(programming_language)}{\lang{Agda}}, %
+  \href{https://en.wikipedia.org/wiki/Rust_(programming_language)}{\lang{Rust}}, %
+  \href{https://en.wikipedia.org/wiki/C_(programming_language)}{\lang{C}}, %
+  \href{https://en.wikipedia.org/wiki/C++}{\lang{C++}}, %
+  \href{https://en.wikipedia.org/wiki/Java_(programming_language)}{\lang{Java}}, %
+  \href{https://en.wikipedia.org/wiki/OCaml}{\lang{OCaml}}, %
+  \href{https://en.wikipedia.org/wiki/Python_(programming_language)}{\lang{Python}}%
 }
 \cvitem{Software}{%
-  Linux (10 yrs), git, %
-  ROOT, Geant4%
+  \href{https://en.wikipedia.org/wiki/Linux}{Linux} (10 yrs), %
+  \href{https://nixos.org}{NixOS}, %
+  \href{https://git-scm.com}{git}, %
+  \href{https://www.latex-project.org}{\LaTeX}, %
+  \href{https://root.cern.ch}{ROOT}, %
+  \href{http://geant4.cern.ch}{Geant4}%
 }
-\cvitem{CAD}{SolidWorks, Siemens NX, EAGLE}
-\cvitem{Other}{Emacs, \LaTeX, NixOS}
+\cvitem{CAD}{%
+  \href{https://en.wikipedia.org/wiki/SolidWorks}{SolidWorks}, %
+  \href{https://en.wikipedia.org/wiki/Siemens_NX}{Siemens NX}, %
+  \href{https://en.wikipedia.org/wiki/EAGLE_(program)}{EAGLE}%
+}
 
 \newpage
 
 \section{Technical Education}
 \vspace{1em}
+
+\setlength{\extrarowheight}{2pt}
+
+\begin{center}
 \begin{tabular}{l p{1in} l}
   \multicolumn{3}{c}{Courses taken} \\
+  \multicolumn{3}{c}{(\credit{} means proficiency test / AP exam / \ldots)} \\
   \\[3pt]
-  AE 100           & \hfill & Introduction to Aerospace Engineering \\
-  AE 199           & \hfill & Aerospace Computer-Aided Design       \\
-  AE 202           & \hfill & Aerospace Flight Mechanics            \\
-  AE 311           & \hfill & Incompressible Flow                   \\
-  AE 352           & \hfill & Aerospace Dynamical Systems           \\
-  CS 125           & \hfill & Introduction to Computer Science      \\
-  CS 173           & \hfill & Discrete Structures                   \\
-  CS 233           & \hfill & Computer Architecture                 \\
-  CS 241           & \hfill & System Programming                    \\
-  CS 397           & \hfill & Individual Study --- Category Theory  \\
-  CS 421           & \hfill & Programming Languages                 \\
-  CS 422           & \hfill & Programming Language Design           \\
-  CS 476           & \hfill & Program Verification                  \\
-  CS 477           & \hfill & Formal Software Development Methods   \\
-  ECE 205/206      & \hfill & Electronic Circuits + Lab             \\
-  MATH 221/231/241 & \hfill & Calculus I/II/III                     \\
-  MATH 225         & \hfill & Introduction to Matrix Theory         \\
-  ME 300           & \hfill & Thermodynamics                        \\
-  MSE 280          & \hfill & Engineering Materials                 \\
-  PHYS 211/212     & \hfill & Physics: Mechanics / E\&M             \\
-  STAT 100/200/400 & \hfill & Statistics I/II/III                   \\
-  TAM 210/212      & \hfill & Statics / Dynamics                    \\
-  \\
-  \multicolumn{3}{c}{Spring 2017 courses (subject to change)} \\
-  \\[3pt]
-  CS 242           & \hfill & Programming Studio                    \\
-  CS 374           & \hfill & Algorithms and Models of Computation  \\
-  CS 450           & \hfill & Numerical Analysis                    \\
-  CS 498           & \hfill & Logic                                 \\
-  \\
+  \hline
+  \course{AE}{100}     & \hfill & Introduction to Aerospace Engineering \\
+  \course{AE}{199}     & \hfill & Aerospace Computer-Aided Design       \\
+  \course{AE}{202}     & \hfill & Aerospace Flight Mechanics            \\
+  \course{AE}{311}     & \hfill & Incompressible Flow                   \\
+  \course{AE}{352}     & \hfill & Aerospace Dynamical Systems           \\
+  \hline
+  \course{CHEM}{102} / \course{CHEM}{104}
+                       & \hfill & General Chemistry I/II \credit{}      \\
+  \hline
+  \course{CS}{125}     & \hfill & Introduction to CS \credit{}          \\
+  \course{CS}{173}     & \hfill & Discrete Mathematics                  \\
+  \course{CS}{225}     & \hfill & Data Structures \credit{}             \\
+  \course{CS}{233}     & \hfill & Computer Architecture                 \\
+  \course{CS}{241}     & \hfill & System Programming                    \\
+  \course{CS}{242}     & \hfill & Programming Studio                    \\
+  \course{CS}{357}     & \hfill & Numerical Methods                     \\
+  \course{CS}{374}     & \hfill & Algorithms \& Models of Computation   \\
+  \course{CS}{397}     & \hfill & Individual Study --- Category Theory  \\
+  \course{CS}{421}     & \hfill & Programming Languages                 \\
+  \course{CS}{422}     & \hfill & Programming Language Design           \\
+  \course{CS}{440}     & \hfill & Artificial Intelligence               \\
+  \course{CS}{476}     & \hfill & Program Verification                  \\
+  \course{CS}{477}     & \hfill & Formal Software Development Methods   \\
+  \course{CS}{491}     & \hfill & Functional Programming Seminar        \\
+  \course{CS}{497}     & \hfill & CS Team Project                       \\
+  \course{CS}{498-MP3} & \hfill & Logic in Computer Science             \\
+  \course{CS}{499}     & \hfill & Senior Thesis                         \\
+  \course{CS}{524}     & \hfill & Concurrent Programming Languages      \\
+  \hline
+  \course{ECE}{205} / \course{ECE}{206}
+                       & \hfill & Electronic Circuits + Lab             \\
+  \hline
+  \course{ECON}{102}   & \hfill & Microeconomic Principles              \\
+  \hline
+  \course{MATH}{220} / \course{MATH}{231}
+                       & \hfill & Calculus I/II \credit{}               \\
+  \course{MATH}{241}   & \hfill & Multivariable Calculus                \\
+  \course{MATH}{415}   & \hfill & Linear Algebra \credit{}              \\
+  \hline
+  \course{ME}{300}     & \hfill & Thermodynamics                        \\
+  \hline
+  \course{MSE}{280}    & \hfill & Engineering Materials                 \\
+  \hline
+  \course{PHYS}{211} / \course{PHYS}{212}
+                       & \hfill & Physics: Mechanics / E\&{}M \credit{} \\
+  \hline
+  \course{STAT}{100} / \course{STAT}{200} / \course{STAT}{400}
+                       & \hfill & Statistics I/II/III \credit{}         \\
+  \hline
+  \course{TAM}{210}/\course{TAM}{212}
+                       & \hfill & Statics / Dynamics                    \\
+  \hline
 \end{tabular}
+\end{center}
 
-\section{Other Courses}
-\setlength{\tabcolsep}{10pt}
-\begin{tabular}{l p{0.6in} l l}
-  \\
-  \multicolumn{4}{c}{Columbia University Science Honors Program} \\
-  \\
-  Relativity and Quantum Mechanics              & \hfill & Fall   & 2012 \\
-  Computer Programming in Java                  & \hfill & Spring & 2012 \\
-  Mathematical Methods in the Physical Sciences & \hfill & Spring & 2013 \\
-  Astronomy and Astrophysics                    & \hfill & Fall   & 2013 \\
-  Group Theory                                  & \hfill & Spring & 2014 \\
-\end{tabular}
+% \section{Other Courses}
+% \setlength{\tabcolsep}{10pt}
+% \begin{tabular}{l p{0.6in} l l}
+%   \\
+%   \multicolumn{4}{c}{Columbia University Science Honors Program} \\
+%   \\
+%   Relativity and Quantum Mechanics              & \hfill & Fall   & 2012 \\
+%   Computer Programming in Java                  & \hfill & Spring & 2012 \\
+%   Mathematical Methods in the Physical Sciences & \hfill & Spring & 2013 \\
+%   Astronomy and Astrophysics                    & \hfill & Fall   & 2013 \\
+%   Group Theory                                  & \hfill & Spring & 2014 \\
+%   \end{tabular}
+
 \end{document}
